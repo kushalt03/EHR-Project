@@ -31,4 +31,11 @@ export class WebClientService {
   deletePatient(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
+  getEhrData(mpid: number, role: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/ehr/${mpid}?role=${role}`);
+  }
+  login(data: any) {
+    return this.http.post('http://localhost:5000/api/login', data);
+  }
+  
 }

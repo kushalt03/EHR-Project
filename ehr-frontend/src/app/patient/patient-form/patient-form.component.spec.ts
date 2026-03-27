@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PatientFormComponent } from './PatientDetails.component';
-import { WebClientService } from '../webClient';
+import { PatientFormComponent } from './patient-form.component';
+import { WebClientService } from '../../core/services/web-client.service';
 import { of } from 'rxjs';
 
 describe('PatientFormComponent', () => {

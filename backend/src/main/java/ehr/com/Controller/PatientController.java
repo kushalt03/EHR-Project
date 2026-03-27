@@ -1,10 +1,11 @@
-package ehr.com.Controller;
+package ehr.com.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,22 +14,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ehr.com.Model.PatientModel;
 import ehr.com.Repository.PatientRepository;
+import ehr.com.service.EhrService;
 
 @RestController
 @RequestMapping("/api/patients")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost    :4200")
 public class PatientController {
 
     private final PatientRepository patientRepository;
 
     @Autowired
+    private EhrService ehrService;
+
+    @Autowired
     public PatientController(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
+
+    // =========================
+    // EXISTING CRUD APIs
+    // =========================
 
     // CREATE / SUBMIT
     @PostMapping("/submit")
@@ -78,5 +88,17 @@ public class PatientController {
         } else {
             return "Patient not found";
         }
+    }
+
+    // =========================
+    // 🔥 NEW EHR ROLE-BASED API
+    // =========================
+
+    @GetMapping("/ehr/{mpid}")
+    public ResponseEntity<?> getPatientEhrData(
+            @PathVariable Long mpid,
+            @RequestParam String role) {
+
+        return ResponseEntity.ok(ehrService.getPatientData(mpid, role));
     }
 }

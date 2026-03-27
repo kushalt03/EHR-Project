@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { WebClientService } from '../webClient';
+import { WebClientService } from '../../core/services/web-client.service'; // ✅ FIXED
 
 @Component({
   selector: 'app-patient-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './PatientDetails.component.html',
-  styleUrls: ['./PatientDetails.component.scss']
+  templateUrl: './patient-form.component.html',   // ✅ FIXED
+  styleUrls: ['./patient-form.component.scss']    // ✅ FIXED
 })
 export class PatientFormComponent {
+
   patientForm: FormGroup;
   responseMessage: string = '';
 
@@ -32,17 +33,11 @@ export class PatientFormComponent {
   }
 
   onSubmit() {
-    console.log('Submit clicked', this.patientForm.valid, this.patientForm.value);
     if (this.patientForm.valid) {
       this.webClient.submitPatient(this.patientForm.value).subscribe({
         next: () => this.responseMessage = 'Patient saved successfully!',
-        error: (err) => {
-          console.error(err);
-          this.responseMessage = 'Error saving patient.';
-        }
+        error: () => this.responseMessage = 'Error saving patient.'
       });
-    } else {
-      this.responseMessage = 'Please fill required fields.';
     }
   }
 }
