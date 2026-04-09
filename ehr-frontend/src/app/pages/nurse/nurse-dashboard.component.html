@@ -1,0 +1,127 @@
+<app-main-layout (menuClick)="handleMenu($event)">
+
+<div class="container">
+
+  <!-- ================= DASHBOARD ================= -->
+  <div *ngIf="currentPage === 'dashboard'">
+
+    <!-- HEADER -->
+    <h2>🏥 {{ section }} Ward </h2>
+
+    <!-- 🔥 STATS -->
+    <div class="stats">
+      <div class="stat-card">🛏 Patients <b>{{ patients.length }}</b></div>
+      <div class="stat-card">💉 Tasks <b>{{ patients.length }}</b></div>
+      <div class="stat-card">⏱ Pending <b>2</b></div>
+      <div class="stat-card alert">🚨 Alerts <b>0</b></div>
+    </div>
+
+    <!-- ================= TABLE ================= -->
+    <table *ngIf="patients.length">
+
+      <tr>
+        <th>MPID</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Status</th>
+      </tr>
+
+      <tr *ngFor="let p of patients"
+          (click)="selectPatient(p)"
+          class="row">
+
+        <td>{{ p[0] }}</td>
+        <td>{{ p[1] }} {{ p[2] }}</td>
+        <td>{{ p[4] }}</td>
+
+        <td>
+          <span class="badge stable">Stable</span>
+        </td>
+
+      </tr>
+
+    </table>
+
+    <!-- EMPTY -->
+    <div *ngIf="!patients.length" class="empty">
+      No patients available
+    </div>
+
+    <!-- ================= DETAIL VIEW ================= -->
+    <div *ngIf="selectedPatient" class="patient-detail">
+
+      <!-- BACK -->
+      <button class="back-btn" (click)="selectedPatient = null">
+        ⬅ Back
+      </button>
+
+      <!-- GRID -->
+      <div class="detail-grid">
+
+        <!-- PROFILE -->
+        <div class="card white highlight">
+          <h3>{{ selectedPatient[1] }} {{ selectedPatient[2] }}</h3>
+          <p><b>MPID:</b> {{ selectedPatient[0] }}</p>
+          <p><b>Gender:</b> {{ selectedPatient[4] }}</p>
+        </div>
+
+        <!-- CLINICAL -->
+        <div class="card white" *ngIf="details.length">
+          <h3>Clinical Info</h3>
+          <p><b>Diagnosis:</b> {{ details[0][5] }}</p>
+          <p><b>Dosage:</b> {{ details[0][6] }}</p>
+          <p><b>Temperature:</b> {{ details[0][7] }}</p>
+          <p><b>Heart Rate:</b> {{ details[0][8] }}</p>
+        </div>
+
+      </div>
+
+      <!-- ================= VITAL FORM ================= -->
+      <div class="card vitals-form">
+
+        <h3>💉 Add Vitals</h3>
+
+        <div class="form-grid">
+          <input type="number" placeholder="Temperature" [(ngModel)]="vitals.temperature">
+          <input type="number" placeholder="Heart Rate" [(ngModel)]="vitals.heart_rate">
+          <input type="number" placeholder="SpO2" [(ngModel)]="vitals.spo2">
+          <input type="number" placeholder="Pain Score" [(ngModel)]="vitals.pain_score">
+          <input type="number" placeholder="GCS Score" [(ngModel)]="vitals.gcs_score">
+        </div>
+
+        <button class="submit-btn" (click)="submitVitals()">
+          Submit Vitals
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= OTHER PAGES ================= -->
+
+  <div *ngIf="currentPage === 'patient'">
+    <h2>Patient Form</h2>
+    <app-patient-form></app-patient-form>
+  </div>
+
+  <div *ngIf="currentPage === 'team'">
+    <app-team></app-team>
+  </div>
+
+  <div *ngIf="currentPage === 'about'">
+    <app-about></app-about>
+  </div>
+
+  <div *ngIf="currentPage === 'faq'">
+    <app-faq></app-faq>
+  </div>
+
+  <div *ngIf="currentPage === 'help'">
+    <app-help></app-help>
+  </div>
+
+</div>
+
+</app-main-layout>

@@ -1,1 +1,102 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== GOOGLE FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ===== GLOBAL ===== */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+}
+
+/* ===== HEADINGS (ELEGANT HOSPITAL STYLE) ===== */
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.5px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #0f172a;
+  text-align: center;
+}
+
+h3 {
+  color: #0c4a6e;
+  margin-bottom: 12px;
+}
+
+/* ===== TEXT ===== */
+p {
+  color: #1e293b;
+  margin: 6px 0;
+}
+
+/* ===== GRID ===== */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* ===== CARD SYSTEM (GLASS + PREMIUM) ===== */
+.card {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(10px);
+
+  border-radius: 18px;
+  padding: 22px;
+
+  border: 1px solid rgba(255,255,255,0.3);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.08),
+    inset 0 1px 1px rgba(255,255,255,0.6);
+
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+/* ===== CARD COLOR THEMES ===== */
+.card.blue {
+  background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+}
+
+.card.green {
+  background: linear-gradient(135deg, #d1fae5, #ccfbf1);
+}
+
+.card.yellow {
+  background: linear-gradient(135deg, #fef9c3, #fef3c7);
+}
+
+.card.gray {
+  background: linear-gradient(135deg, #e2e8f0, #f1f5f9);
+}
+.card p b {
+  color: #0f172a;
+}
+
+/* PATIENT */
+.main.patient .card {
+  background: linear-gradient(135deg, #e0f2fe, #dcfce7);
+}
+
+/* DOCTOR */
+.main.doctor .card {
+  background: linear-gradient(135deg, #e0e7ff, #f0f9ff);
+}
+
+/* NURSE */
+.main.nurse .card {
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+}
+
+/* ADMIN */
+.main.admin .card {
+  background: linear-gradient(135deg, #ede9fe, #f5f3ff);
+}

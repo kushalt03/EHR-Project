@@ -1,0 +1,124 @@
+<app-main-layout (menuClick)="handleMenu($event)">
+
+<!-- ================= DASHBOARD ================= -->
+<div *ngIf="currentPage === 'dashboard'">
+
+  <h2>⚙️ Admin Control Panel</h2>
+
+  <div class="cards">
+
+    <div class="card" (click)="handleMenu('patients')">
+      <span>🧑‍⚕️ Patients</span>
+      <p>{{stats.patients}}</p>
+    </div>
+
+    <div class="card" (click)="handleMenu('staff')">
+      <span>👨‍⚕️ Staff</span>
+      <p>{{stats.doctors + stats.nurses}}</p>
+    </div>
+
+    <div class="card" (click)="handleMenu('lab')">
+      <span>🧪 Lab Orders</span>
+      <p>{{stats.lab}}</p>
+    </div>
+
+    <div class="card" (click)="handleMenu('claims')">
+      <span>📄 Claims</span>
+      <p>{{stats.claims}}</p>
+    </div>
+
+    <div class="card" (click)="handleMenu('meds')">
+      <span>💊 Medicines</span>
+      <p>{{stats.meds}}</p>
+    </div>
+
+    <div class="card revenue">
+      <span>💰 Revenue</span>
+      <p>₹{{stats.revenue}}</p>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ================= LIST VIEW ================= -->
+<div *ngIf="currentPage !== 'dashboard'">
+
+  <button class="back-btn" (click)="back()">⬅ Back</button>
+
+  <div *ngIf="loading" class="loading">Loading...</div>
+
+  <!-- SIMPLE PAGES -->
+  <div *ngIf="currentPage === 'team'"><app-team></app-team></div>
+  <div *ngIf="currentPage === 'about'"><app-about></app-about></div>
+  <div *ngIf="currentPage === 'faq'"><app-faq></app-faq></div>
+  <div *ngIf="currentPage === 'help'"><app-help></app-help></div>
+
+  <div *ngIf="currentPage === 'patient'">
+    <app-patient-form></app-patient-form>
+  </div>
+
+  <!-- 🔥 TABLE -->
+  <table *ngIf="data.length">
+
+    <tr>
+      <th *ngFor="let col of getHeaders()">{{ col }}</th>
+    </tr>
+
+    <tr *ngFor="let row of data"
+        (click)="openDetails(row)"
+        class="row"
+        [class.selected]="selectedRow === row">
+
+      <td *ngFor="let col of row">{{ col }}</td>
+    </tr>
+
+  </table>
+
+  <!-- 🔥 DETAIL PANEL -->
+  <div *ngIf="selectedRow" class="detail-panel">
+
+      <div class="detail-grid">
+
+        <!-- BASIC -->
+        <!-- PATIENT -->
+        <div *ngIf="detailType === 'patients'">
+          <p><b>Name:</b> {{ selectedRow[1] }} {{ selectedRow[2] }}</p>
+          <p><b>Gender:</b> {{ selectedRow[3] }}</p>
+        </div>
+
+        <!-- STAFF -->
+        <div *ngIf="detailType === 'staff'">
+          <p><b>Name:</b> {{ selectedRow[1] }} {{ selectedRow[2] }}</p>
+          <p><b>Role:</b> {{ selectedRow[3] }}</p>
+        </div>
+
+        <!-- LAB / CLAIMS -->
+        <div *ngIf="detailType === 'lab' || detailType === 'claims'">
+          <p><b>MPID:</b> {{ selectedRow[1] }}</p>
+          <p><b>Type:</b> {{ selectedRow[2] }}</p>
+          <p><b>Status:</b> {{ selectedRow[selectedRow.length - 1] }}</p>
+        </div>
+
+        <!-- MEDS -->
+        <div *ngIf="detailType === 'meds'">
+          <p><b>Medicine:</b> {{ selectedRow[0] }}</p>
+          <p><b>Stock:</b> {{ selectedRow[1] }}</p>
+        </div>
+
+      <!-- DETAILS -->
+      <div class="card white" *ngIf="details.length">
+        <h3>Clinical Info</h3>
+        <p><b>Diagnosis:</b> {{ details[0][5] }}</p>
+        <p><b>Dosage:</b> {{ details[0][6] }}</p>
+        <p><b>Temperature:</b> {{ details[0][7] }}</p>
+        <p><b>Heart Rate:</b> {{ details[0][8] }}</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</app-main-layout>

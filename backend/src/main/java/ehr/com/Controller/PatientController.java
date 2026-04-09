@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ehr.com.Model.PatientModel;
-import ehr.com.Repository.PatientRepository;
+import ehr.com.entity.Patient;
+import ehr.com.repository.PatientRepository;
 import ehr.com.service.EhrService;
 
 @RestController
 @RequestMapping("/api/patients")
-@CrossOrigin(origins = "http://localhost    :4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PatientController {
 
     private final PatientRepository patientRepository;
@@ -42,7 +42,7 @@ public class PatientController {
 
     // CREATE / SUBMIT
     @PostMapping("/submit")
-    public PatientModel submitPatient(@RequestBody PatientModel patient) {
+    public Patient submitPatient(@RequestBody Patient patient) {
         patient.setCreationTimestamp(LocalDateTime.now());
         patient.setLastUpdated(LocalDateTime.now());
         return patientRepository.save(patient);
@@ -50,19 +50,19 @@ public class PatientController {
 
     // READ ALL
     @GetMapping
-    public List<PatientModel> getAllPatients() {
+    public List<Patient> getAllPatients() {
         return patientRepository.findAll();
     }
 
     // READ ONE
     @GetMapping("/{id}")
-    public Optional<PatientModel> getPatientById(@PathVariable Integer id) {
+    public Optional<Patient> getPatientById(@PathVariable Integer id) {
         return patientRepository.findById(id);
     }
 
     // UPDATE
     @PutMapping("/{id}")
-    public PatientModel updatePatient(@PathVariable Integer id, @RequestBody PatientModel updatedPatient) {
+    public Patient updatePatient(@PathVariable Integer id, @RequestBody Patient updatedPatient) {
         return patientRepository.findById(id).map(existing -> {
             existing.setFirstName(updatedPatient.getFirstName());
             existing.setLastName(updatedPatient.getLastName());

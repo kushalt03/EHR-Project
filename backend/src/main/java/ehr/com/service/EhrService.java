@@ -3,7 +3,7 @@ package ehr.com.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ehr.com.Repository.PatientRepository;
+import ehr.com.repository.PatientRepository;
 
 @Service
 public class EhrService {

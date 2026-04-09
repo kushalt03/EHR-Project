@@ -1,0 +1,163 @@
+.container {
+  padding: 20px;
+}
+
+/* HEADER */
+h2 {
+  text-align: center;
+  color: #0f766e;
+  margin-bottom: 25px;
+  font-family: 'Playfair Display', serif;
+}
+
+/* ================= STATS ================= */
+.stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  flex: 1;
+  padding: 15px;
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #ccfbf1, #99f6e4);
+  text-align: center;
+
+  font-weight: 500;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.stat-card b {
+  display: block;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.stat-card.alert {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+}
+
+/* ================= TABLE ================= */
+table {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+th {
+  background: linear-gradient(90deg, #0f766e, #14b8a6);
+  color: white;
+  padding: 12px;
+}
+
+td {
+  padding: 12px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background: #f0fdfa;
+}
+
+.row {
+  cursor: pointer;
+}
+
+.row:hover {
+  background: #ccfbf1;
+}
+
+/* STATUS BADGE */
+.badge {
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.stable {
+  background: #bbf7d0;
+  color: #166534;
+}
+
+/* ================= DETAIL ================= */
+.patient-detail {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* BACK BUTTON */
+.back-btn {
+  align-self: flex-start;
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* GRID */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* CARD */
+.card.white {
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.highlight {
+  border-left: 5px solid #0f766e;
+}
+
+/* ================= VITAL FORM ================= */
+.vitals-form {
+  background: #f0fdfa;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* BUTTON */
+.submit-btn {
+  background: linear-gradient(90deg, #0f766e, #14b8a6);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #115e59;
+}
+
+/* EMPTY */
+.empty {
+  padding: 20px;
+  background: #fef3c7;
+  border-radius: 8px;
+  text-align: center;
+}

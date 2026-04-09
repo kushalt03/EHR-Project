@@ -1,0 +1,53 @@
+.about-page {
+  padding: 20px;
+}
+
+/* TITLE */
+.about-page h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 30px;
+  color: #1e3a8a;
+}
+
+/* SECTIONS */
+section {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+
+  padding: 20px;
+  border-radius: 16px;
+
+  margin-bottom: 20px;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.08),
+    inset 0 1px 2px rgba(255,255,255,0.6);
+
+  transition: 0.25s;
+}
+
+section:hover {
+  transform: translateY(-4px);
+}
+
+/* HEADINGS */
+section h3 {
+  margin-bottom: 10px;
+  color: #0c4a6e;
+}
+
+/* TEXT */
+section p {
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* LIST */
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 6px;
+}
