@@ -1,0 +1,121 @@
+<app-main-layout (menuClick)="handleMenu($event)">
+
+    <!-- ================= DASHBOARD ================= -->
+    <div *ngIf="currentPage === 'dashboard'">
+
+      <!-- LIST -->
+      <div *ngIf="!selectedPatient">
+
+        <h2>Here are your patients for today</h2>
+
+        <!-- CARDS -->
+        <div class="cards">
+          <div 
+            *ngFor="let c of counts" 
+            class="card"
+            (click)="filterByType(c[0])">
+
+            <h3>{{ c[0] }}</h3>
+            <p>{{ c[1] }}</p>
+          </div>
+        </div>
+
+        <!-- FILTER -->
+        <select [(ngModel)]="selectedType" (change)="fetchPatients()">
+          <option value="">Select Type</option>
+          <option value="OPD">OPD</option>
+          <option value="IPD">IPD</option>
+          <option value="EMERGENCY">EMERGENCY</option>
+        </select>
+
+        <!-- EMPTY STATE -->
+        <div *ngIf="selectedType && !patients.length" class="empty">
+          No patients found for {{ selectedType }}
+        </div>
+
+        <!-- TABLE -->
+        <table *ngIf="patients.length">
+          <tr>
+            <th>MPID</th>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+          </tr>
+
+          <tr *ngFor="let p of patients" (click)="openPatient(p)" class="row">
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }} {{ p[2] }}</td>
+            <td>{{ p[3] }}</td>
+            <td>{{ p[4] }}</td>
+            <td>{{ p[5] }}</td>
+          </tr>
+        </table>
+
+      </div>
+
+      <!-- DETAIL -->
+      <div *ngIf="selectedPatient" class="patient-detail">
+
+        <!-- 🔥 BACK BUTTON (TOP LEFT) -->
+        <button class="back-btn" (click)="goBack()">⬅ Back</button>
+
+        <!-- 🔥 INFO + DIAGNOSIS -->
+        <div class="detail-grid">
+
+          <!-- PERSONAL INFO -->
+          <div class="card white highlight">
+            <h2>{{ selectedPatient[1] }} {{ selectedPatient[2] }}</h2>
+            <p><b>MPID:</b> {{ selectedPatient[0] }}</p>
+            <p><b>DOB:</b> {{ selectedPatient[3] }}</p>
+            <p><b>Gender:</b> {{ selectedPatient[4] }}</p>
+            <p><b>Mobile:</b> {{ selectedPatient[5] }}</p>
+          </div>
+
+          <!-- CLINICAL INFO -->
+          <div class="card white" *ngIf="patientDetails && patientDetails.length">
+            <h3>Clinical Info</h3>
+            <p><b>Diagnosis:</b> {{ patientDetails[0][5] }}</p>
+            <p><b>Medicine:</b> {{ patientDetails[0][6] }}</p>
+            <p><b>Temperature:</b> {{ patientDetails[0][7] }}</p>
+            <p><b>BP:</b> {{ patientDetails[0][8] }}</p>
+          </div>
+
+        </div>
+
+        <!-- 🔥 FULL WIDTH VITALS -->
+        <div class="card white vitals-full">
+          <h3>Vitals Graph</h3>
+          <canvas id="vitalsChart"></canvas>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================= PATIENT FORM ================= -->
+    <div *ngIf="currentPage === 'patient'">
+      <app-patient-form></app-patient-form>
+    </div>
+
+    <!-- ================= TEAM ================= -->
+    <div *ngIf="currentPage === 'team'" class="card white">
+      <app-team></app-team>
+    </div>
+
+    <!-- ================= ABOUT ================= -->
+    <div *ngIf="currentPage === 'about'" class="card white">
+      <app-about></app-about>
+    </div>
+
+    <!-- ================= FAQ ================= -->
+    <div *ngIf="currentPage === 'faq'" class="card white">
+      <app-faq></app-faq>
+    </div>
+
+    <!-- ================= HELP ================= -->
+    <div *ngIf="currentPage === 'help'" class="card white">
+      <app-help></app-help>
+    </div>
+
+  </app-main-layout>

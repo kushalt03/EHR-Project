@@ -1,25 +1,28 @@
-<div class="faq-page">
+<div class="faq-page" [ngClass]="role">
 
   <h2>❓ Frequently Asked Questions</h2>
 
+  <!-- 🔍 SEARCH -->
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Search questions..."
+      [(ngModel)]="searchText" />
+  </div>
+
+  <!-- FAQ LIST -->
   <div class="faq-container">
 
-    <div 
-      *ngFor="let item of faqs; let i = index" 
-      class="faq-item"
-      (click)="toggle(i)">
+    <div class="faq"
+         *ngFor="let q of faqs | filter:searchText; let i = index"
+         [class.open]="openIndex === i">
 
-      <!-- QUESTION -->
-      <div class="question">
-        {{ item.q }}
-        <span class="icon">
-          {{ openIndex === i ? '−' : '+' }}
-        </span>
+      <div class="question" (click)="toggle(i)">
+        {{ q.q }}
       </div>
 
-      <!-- ANSWER -->
-      <div class="answer" *ngIf="openIndex === i">
-        {{ item.a }}
+      <div class="answer">
+        {{ q.a }}
       </div>
 
     </div>

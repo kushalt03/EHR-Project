@@ -1,0 +1,32 @@
+<!-- NAVBAR -->
+  <div class="navbar" [ngClass]="role">
+
+    <div class="left">
+      <span class="brand">EHR System</span>
+      <span class="tagline">- Your data is safe with us</span>
+
+      <span class="greeting">
+        Hello! {{ userName }}
+        <small>Welcome Back!!!</small>
+      </span>
+    </div>
+
+    <div class="right">
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+
+  </div>
+
+  <div class="layout">
+
+    <app-sidebar 
+      [activePage]="activePage"
+      [role]="role"
+      (menuClick)="menuChange($event)">
+    </app-sidebar>
+
+    <div class="main" [ngClass]="role">
+      <ng-content></ng-content>
+    </div>
+
+  </div>

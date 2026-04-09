@@ -1,56 +1,149 @@
+/* ===== PAGE ===== */
 .faq-page {
-  padding: 20px;
+  padding: 40px 20px;
 }
 
-/* TITLE */
+/* ===== TITLE ===== */
 .faq-page h2 {
   text-align: center;
   font-family: 'Playfair Display', serif;
-  margin-bottom: 30px;
-  color: #1e3a8a;
+  margin-bottom: 25px;
+  font-size: 34px;
 }
 
-/* CONTAINER */
+/* ===== SEARCH ===== */
+.search-box {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 14px 18px;
+
+  border-radius: 30px;
+  border: none;
+
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+  font-size: 14px;
+  outline: none;
+}
+
+/* ===== CONTAINER ===== */
 .faq-container {
+  max-width: 900px;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
 }
 
-/* ITEM */
-.faq-item {
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(6px);
+/* ===== CARD ===== */
+.faq {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(12px);
 
-  border-radius: 14px;
-  padding: 15px;
+  border-radius: 18px;
+  padding: 20px 24px;
 
-  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.4);
 
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: 0.25s;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08),
+    inset 0 1px 1px rgba(255,255,255,0.6);
+
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.faq-item:hover {
-  transform: translateY(-3px);
+/* ===== ROLE COLORS ===== */
+.faq-page.patient .faq.open {
+  border-color: #22c55e;
+}
+.faq-page.doctor .faq.open {
+  border-color: #3b82f6;
+}
+.faq-page.nurse .faq.open {
+  border-color: #10b981;
+}
+.faq-page.admin .faq.open {
+  border-color: #8b5cf6;
 }
 
-/* QUESTION */
+/* ===== QUESTION ===== */
 .question {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
   font-weight: 600;
-  color: #0f172a;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-/* ICON */
-.icon {
+/* PREFIX */
+.question::before {
+  content: "Q.";
+  margin-right: 10px;
+  font-weight: bold;
+  color: #6366f1;
+}
+
+/* ARROW */
+.question::after {
+  content: "⌄";
   font-size: 18px;
+  transition: 0.3s;
 }
 
-/* ANSWER */
+.faq.open .question::after {
+  transform: rotate(180deg);
+}
+
+/* ===== ANSWER ===== */
 .answer {
+  max-height: 0;
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(-8px);
+
+  transition: all 0.3s ease;
+}
+
+/* OPEN */
+.faq.open .answer {
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
   margin-top: 10px;
+}
+
+/* TEXT */
+.answer {
+  font-size: 14px;
+  line-height: 1.7;
   color: #334155;
-  line-height: 1.6;
+}
+
+/* ===== ACTIVE LINE ===== */
+.faq::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
+  transition: 0.4s;
+}
+
+.faq.open::after {
+  width: 100%;
 }

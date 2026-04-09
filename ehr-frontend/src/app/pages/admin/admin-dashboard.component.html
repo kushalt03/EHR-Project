@@ -82,26 +82,26 @@
 
         <!-- BASIC -->
         <!-- PATIENT -->
-        <div *ngIf="detailType === 'patients'">
+        <div class="card white" *ngIf="detailType === 'patients'">
           <p><b>Name:</b> {{ selectedRow[1] }} {{ selectedRow[2] }}</p>
           <p><b>Gender:</b> {{ selectedRow[3] }}</p>
         </div>
 
         <!-- STAFF -->
-        <div *ngIf="detailType === 'staff'">
+        <div class="card white" *ngIf="detailType === 'staff'">
           <p><b>Name:</b> {{ selectedRow[1] }} {{ selectedRow[2] }}</p>
           <p><b>Role:</b> {{ selectedRow[3] }}</p>
         </div>
 
         <!-- LAB / CLAIMS -->
-        <div *ngIf="detailType === 'lab' || detailType === 'claims'">
+        <div class="card white" *ngIf="detailType === 'lab' || detailType === 'claims'">
           <p><b>MPID:</b> {{ selectedRow[1] }}</p>
           <p><b>Type:</b> {{ selectedRow[2] }}</p>
           <p><b>Status:</b> {{ selectedRow[selectedRow.length - 1] }}</p>
         </div>
 
         <!-- MEDS -->
-        <div *ngIf="detailType === 'meds'">
+        <div class="card white" *ngIf="detailType === 'meds'">
           <p><b>Medicine:</b> {{ selectedRow[0] }}</p>
           <p><b>Stock:</b> {{ selectedRow[1] }}</p>
         </div>

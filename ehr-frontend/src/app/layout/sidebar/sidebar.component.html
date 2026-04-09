@@ -1,0 +1,19 @@
+<div class="sidebar" [ngClass]="role">
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="images/page_logo.png" alt="EHR Logo" />
+  </div>
+
+  <!-- MENU -->
+  <ul>
+    <li 
+      *ngFor="let item of menu"
+      (click)="select(item.key)"
+      [class.active]="activePage === item.key">
+
+      {{ item.icon }} {{ item.label }}
+    </li>
+  </ul>
+
+</div>

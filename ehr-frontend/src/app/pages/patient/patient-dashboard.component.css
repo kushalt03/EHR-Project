@@ -1,0 +1,60 @@
+h2 {
+  margin-bottom: 15px;
+  color: #0369a1;
+  font-weight: 600;
+}
+
+/* 🔥 STATS ROW */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #38bdf8, #22c55e);
+  color: white;
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.stat-card h4 {
+  margin-bottom: 6px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.stat-card p {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* 🔥 GRID */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+/* 🔥 CARD HOVER */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: #0c4a6e;
+}
+
+.card p {
+  margin: 6px 0;
+}
+
+/* 🔥 ALERT CARD */
+.card.red {
+  background: linear-gradient(135deg, #fecaca, #fee2e2);
+}

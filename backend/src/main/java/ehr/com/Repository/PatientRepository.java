@@ -217,28 +217,78 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
        """, nativeQuery = true)
        List<Object[]> getAdminOverview();
 
-       @Query(value = """
-       SELECT 
-       p.first_name, p.last_name, p.dob, p.gender, p.contact_no,
+       // @Query(value = """
+       // SELECT 
+       // p.first_name, p.last_name, p.dob, p.gender, p.contact_no,
 
-       im.description,
-       pr.dosage,
-       v.temperature,
-       v.heart_rate,
-       v.blood_pressure
+       // im.description,
+       // CONCAT(m.med_name, ' (', pr.dosage, ')') AS medication,
+       // v.temperature,
+       // v.heart_rate,
+       // v.blood_pressure
        
-       FROM patient p
+       // FROM patient p
 
-       LEFT JOIN encounter e ON p.mpid = e.mpid
-       LEFT JOIN diagnoses d ON e.encounter_id = d.encounter_id
-       LEFT JOIN icd_master im ON d.icd_code = im.icd_code
-       LEFT JOIN prescriptions pr ON e.encounter_id = pr.encounter_id
-       LEFT JOIN vital_signs v ON e.encounter_id = v.encounter_id
+       // LEFT JOIN encounter e ON p.mpid = e.mpid
+       // LEFT JOIN diagnoses d ON e.encounter_id = d.encounter_id
+       // LEFT JOIN icd_master im ON d.icd_code = im.icd_code
+       // LEFT JOIN prescriptions pr ON e.encounter_id = pr.encounter_id
+       // LEFT JOIN medicine m ON pr.med_code = m.med_code
+       // LEFT JOIN vital_signs v ON e.encounter_id = v.encounter_id
 
-       WHERE p.mpid = :mpid
-       LIMIT 1
-       """, nativeQuery = true)
-       List<Object[]> getPatientFullDetails(@Param("mpid") int mpid);
+       // WHERE p.mpid = :mpid
+       // LIMIT 1
+       // """, nativeQuery = true)
+       // List<Object[]> getPatientFullDetails(@Param("mpid") int mpid);
+
+       @Query(value = """
+SELECT 
+p.first_name,
+p.last_name,
+p.dob,
+p.gender,
+p.contact_no,
+
+im.description,
+
+CONCAT(m.med_name, ' - Dose to give:', pr.dosage) AS medication,
+
+v.temperature,
+v.heart_rate,
+v.blood_pressure
+
+FROM patient p
+
+LEFT JOIN encounter e ON p.mpid = e.mpid
+LEFT JOIN diagnoses d ON e.encounter_id = d.encounter_id
+LEFT JOIN icd_master im ON d.icd_code = im.icd_code
+
+LEFT JOIN prescriptions pr ON e.encounter_id = pr.encounter_id
+
+-- ✅ FIXED TABLE NAME HERE
+LEFT JOIN medications m ON pr.med_code = m.med_code
+
+LEFT JOIN vital_signs v ON e.encounter_id = v.encounter_id
+
+WHERE p.mpid = :mpid
+ORDER BY v.measurement_time DESC
+LIMIT 1
+""", nativeQuery = true)
+List<Object[]> getPatientFullDetails(@Param("mpid") int mpid);
+
+       
+
+      
+
+
+
+
+
+
+
+
+
+
        
        @Query(value = """
        SELECT measurement_time, temperature, heart_rate, spo2, pain_score, gcs_score 

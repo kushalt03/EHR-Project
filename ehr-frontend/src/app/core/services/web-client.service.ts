@@ -130,6 +130,5 @@ export class WebClientService {
   getPatientBilling(mpid: number) {
     return this.http.get(`${this.baseUrl}/patient/billing/${mpid}`);
   }
-  
 
 }

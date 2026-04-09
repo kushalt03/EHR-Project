@@ -6,10 +6,7 @@
   <section>
     <h3>Introduction</h3>
     <p>
-      The Electronic Health Record (EHR) System is a modern digital solution
-      designed to simplify and streamline hospital operations. It replaces
-      traditional manual record-keeping with an efficient, centralized platform
-      that enables seamless management of patient data, medical records, and workflows.
+      The Electronic Health Record (EHR) System is a modern digital solution designed to streamline hospital operations by replacing traditional manual record-keeping with a centralized and efficient platform. It enables seamless management of patient data, clinical records, and workflows across the system. Built as a full-stack application using Angular for the frontend, Spring Boot for the backend, and a structured relational database, it supports role-based access for doctors, nurses, and administrators. This ensures that each user can efficiently access and update relevant information. Overall, the system improves data accessibility, reduces manual errors, and enhances the efficiency and scalability of healthcare management.
     </p>
   </section>
 
@@ -28,10 +25,7 @@
   <section>
     <h3>Our Solution</h3>
     <p>
-      This system introduces a role-based architecture where doctors, nurses,
-      patients, and administrators interact through tailored dashboards.
-      Each role has a dedicated interface designed to improve productivity,
-      clarity, and decision-making.
+      This system introduces a role-based architecture where doctors, nurses, patients, and administrators interact through tailored dashboards, ensuring that each user accesses only the information relevant to their responsibilities. Each role has a dedicated interface designed to improve productivity, clarity, and decision-making, reducing confusion and enhancing efficiency in daily operations. Doctors can view diagnoses, prescribe medications, and monitor patient vitals, while nurses can update vital signs and manage patient care tasks. Administrators oversee system-wide data such as staff, billing, and resource management, ensuring smooth hospital functioning. Patients, on the other hand, can access their personal records and stay informed about their health status. This separation of concerns not only enhances security through controlled access but also creates a more organized and scalable system suitable for real-world healthcare environments.
     </p>
   </section>
 
@@ -39,51 +33,174 @@
   <section>
     <h3>Key Features</h3>
     <ul>
-      <li>Role-based dashboards</li>
-      <li>Real-time patient data access</li>
-      <li>Vitals tracking and monitoring</li>
-      <li>Integrated lab and billing systems</li>
-      <li>Clean and intuitive UI</li>
+      <li>Role-Based Dashboards – Separate interfaces for doctors, nurses, admins, and patients to ensure relevant access and better usability.</li>
+      <li>Patient Record Management – Centralized storage of patient details including personal info, history, and clinical data.</li>
+      <li>Doctor Module – Allows doctors to view diagnoses, prescribe medications, and monitor patient vitals.</li>
+      <li>Nurse Module – Enables nurses to update vital signs and assist in patient care tracking.</li>
+      <li>Admin Panel – Provides control over staff, patients, lab records, medicines, and overall system data.</li>
+      <li>Prescription Management – Supports storing and retrieving prescribed medicines with dosage details.</li>
+      <li>Vitals Tracking System – Records and visualizes patient vitals like temperature, heart rate, and blood pressure over time.</li>
+      <li>Interactive Dashboards – Clean UI with cards, tables, and charts for better data visualization and quick insights.</li>
+      <li>Secure Authentication – Login system with role-based access control to ensure data security and privacy.</li>
+      <li>Scalable Architecture – Built using Angular, Spring Boot, and relational database design, making it modular and extendable for future enhancements.</li>
     </ul>
   </section>
 
   <!-- TECH -->
   <section>
+
     <h3>Technology Stack</h3>
-    <p>
-      The frontend is built using Angular with a focus on modular and scalable UI.
-      The backend handles APIs and business logic, ensuring smooth communication.
-      The database stores structured patient and hospital data efficiently.
-    </p>
+    <div>
+      🔧 Technology Stack
+      The EHR System is built using a full-stack architecture, combining modern frontend, backend, and database technologies to ensure scalability, performance, and maintainability.
+    </div>
+    <br>
+    <div>
+      🖥️ Frontend – Angular
+      The frontend of the system is developed using Angular, a powerful TypeScript-based framework. It enables the creation of a dynamic and responsive user interface with reusable components and modular structure. Features like two-way data binding, routing, and standalone components are used to build role-based dashboards for doctors, nurses, patients, and administrators. Angular also helps in creating a smooth user experience with real-time updates and interactive UI elements such as charts, tables, and forms.
+    </div>
+    <br>
+    <div>
+      ⚙️ Backend – Spring Boot
+      The backend is built using Spring Boot, which provides a robust framework for developing RESTful APIs and handling business logic. It manages all server-side operations including authentication, data processing, and communication with the database. Spring Boot simplifies configuration, supports dependency injection, and ensures clean separation of concerns through layered architecture (controller, service, repository). It also helps in building a secure and scalable system.
+    </div>
+    <br>
+    <div>
+      🗄️ Database – MySQL (Relational Database)
+      The system uses a relational database (MySQL) to store structured data such as patient records, prescriptions, diagnoses, encounters, and vital signs. The database is designed using normalized tables with proper relationships (foreign keys) to ensure data integrity and avoid redundancy. This allows efficient querying and consistent data management across different modules.
+    </div>
+    <br>
+    <div>
+      🔗 API Communication – REST APIs
+      Communication between the frontend and backend is handled through RESTful APIs. Angular sends HTTP requests to Spring Boot endpoints, which process the request and return structured responses (JSON). This ensures a decoupled architecture where frontend and backend can evolve independently.
+    </div>
+    <br>
+    <div>
+      📊 Data Visualization – Chart.js
+      For visual representation of patient vitals, the system uses Chart.js. It helps in displaying trends such as temperature, heart rate, and other metrics over time, enabling better clinical decision-making.
+    </div>
+    <br>
+    <div>
+      🔐 Authentication & Storage
+      User authentication is handled through a login system with role-based access control. Local storage is used on the frontend to maintain session data such as user ID, role, and name for seamless navigation across dashboards.
+    </div>
+
   </section>
 
   <!-- CHALLENGES -->
   <section>
     <h3>Challenges Faced</h3>
-    <p>
-      Integrating multiple modules into a unified system required careful planning.
-      Ensuring consistency across dashboards, handling asynchronous data,
-      and maintaining UI clarity were key challenges during development.
-    </p>
+    <div>
+      🔗 Database Design & Relationships
+      Designing a normalized database was challenging, especially while handling relationships between tables like patients, encounters, prescriptions, diagnoses, and vital signs. Ensuring proper foreign key mapping without redundancy required multiple revisions. Initially, issues like duplicate or incomplete data appeared due to improper joins.
+    </div>
+    <br>
+
+    <div>
+      🧠 Complex SQL Queries
+      Writing efficient queries to fetch combined data (like patient details along with diagnosis, medication, and vitals) was difficult. Joining multiple tables sometimes led to data duplication or backend crashes due to large result sets. We had to optimize queries and carefully control joins to ensure stability and performance.
+    </div>
+    <br>
+
+    <div>
+      🔄 Data Flow Between Frontend & Backend
+      Managing consistent data flow between Angular and Spring Boot was another challenge. Since the backend returned raw arrays (Object[]), mapping correct indices on the frontend was error-prone and sometimes caused incorrect or missing data display.
+    </div>
+    <br>
+
+    <div>
+      🎭 Role-Based UI Management
+      Implementing different dashboards for doctors, nurses, admins, and patients required careful UI planning. Ensuring that each role sees only relevant data while maintaining a consistent design system across all dashboards was challenging.
+    </div>
+    <br>
+
+    <div>
+      🐞 Debugging Backend Errors
+      We faced multiple runtime errors such as 500 Internal Server Errors due to incorrect column names, wrong table joins, or schema mismatches. Identifying whether the issue was in SQL, API, or frontend took time and required systematic debugging.
+    </div>
+    <br>
+
+    <div>
+      📊 Real-Time Data Visualization
+      Integrating charts for vitals using Chart.js required proper handling of asynchronous data. Ensuring that the chart renders only after data is loaded and managing re-renders without duplication was tricky.
+    </div>
+    <br>
+
+    <div>
+      🎨 UI/UX Consistency
+      Maintaining a visually appealing and consistent UI across all dashboards was difficult. Balancing design with usability, spacing, color themes for different roles, and responsiveness required multiple refinements.
+    </div>
+    <br>
+
+    <div>
+      🔐 Authentication & Role Handling
+      Implementing role-based login and maintaining session data securely using local storage required careful handling to avoid unauthorized access and ensure smooth navigation.
+    </div>
   </section>
 
   <!-- LEARNING -->
   <section>
     <h3>Learnings</h3>
-    <p>
-      This project strengthened our understanding of full-stack development,
-      system design, and collaborative teamwork. It highlighted the importance
-      of modular architecture and user-focused design.
-    </p>
+    <div>
+      🗄️ Database Design & Normalization
+      We learned how to design a structured relational database using normalization techniques. Understanding relationships between entities like patients, encounters, prescriptions, and vitals helped us avoid redundancy and maintain data integrity.
+    </div>
+    <br>
+
+    <div>
+      🔗 Writing Efficient SQL Queries
+      Working with complex joins taught us how to fetch meaningful data from multiple tables while avoiding duplication and performance issues. We also understood the importance of optimizing queries and validating schema before implementation.
+    </div>
+    <br>
+
+    <div>
+      ⚙️ Backend Development with Spring Boot
+      We gained hands-on experience in building REST APIs, structuring backend logic using controller-service-repository layers, and handling real-time data requests efficiently. Debugging backend errors improved our problem-solving skills significantly.
+    </div>
+    <br>
+
+    <div>
+      🖥️ Frontend Development with Angular
+      We learned how to build modular and reusable components, manage state, and handle dynamic data rendering. Implementing role-based dashboards improved our understanding of UI structuring and user-centric design.
+    </div>
+    <br>
+
+    <div>
+      🔄 API Integration
+      Integrating Angular with Spring Boot helped us understand how frontend and backend communicate using HTTP requests and JSON responses. We also learned how to handle asynchronous data and ensure smooth data flow.
+    </div>
+    <br>
+
+    <div>
+      🐞 Debugging & Error Handling
+      We developed the ability to trace issues across the full stack—whether in SQL queries, backend APIs, or frontend rendering. This improved our debugging approach and made us more confident in resolving complex issues.
+    </div>
+    <br>
+
+    <div>
+      📊 Data Visualization
+      Using Chart.js for vitals visualization taught us how to represent data graphically, making it easier to analyze trends and improving the usability of the system.
+    </div>
+    <br>
+
+    <div>
+      🎨 UI/UX Design Principles
+      We understood the importance of clean design, spacing, color themes, and responsiveness. Creating different dashboards for each role helped us balance aesthetics with functionality.
+    </div>
+    
   </section>
 
   <!-- FUTURE -->
   <section>
     <h3>Future Scope</h3>
     <p>
-      Future improvements include AI-assisted diagnosis, advanced analytics,
-      mobile integration, and enhanced security features to make the system
-      more robust and scalable.
+      The EHR system can be further enhanced by integrating advanced features such as real-time notifications, appointment scheduling, and automated alerts for critical patient conditions. This would improve responsiveness and help healthcare staff take timely actions.
+      <br><br>
+      Another important scope is the integration of AI and analytics, where patient data can be used to predict health risks, suggest treatments, or identify abnormal patterns in vitals. This would make the system more intelligent and supportive for doctors in decision-making.
+      <br><br>
+      The system can also be expanded by adding mobile application support, allowing doctors, nurses, and patients to access data on the go. This would increase accessibility and make the system more practical in real-world hospital environments.
+      <br><br>
+      Finally, improvements in security and scalability such as implementing JWT authentication, cloud deployment, and data encryption can make the system more robust, secure, and ready for large-scale usage across multiple hospitals.
     </p>
   </section>
 

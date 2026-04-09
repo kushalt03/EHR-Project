@@ -1,0 +1,119 @@
+<app-main-layout (menuClick)="handleMenu($event)">
+
+  <!-- ================= DASHBOARD ================= -->
+  <div *ngIf="currentPage === 'dashboard'">
+
+    <h2>Patient Dashboard</h2>
+
+    <!-- 🔥 STATS ROW -->
+    <div class="stats-row">
+
+      <div class="stat-card">
+        <h4>🧾 Visits</h4>
+        <p>12</p>
+      </div>
+
+      <div class="stat-card">
+        <h4>💊 Prescriptions</h4>
+        <p>3</p>
+      </div>
+
+      <div class="stat-card">
+        <h4>🧪 Lab Reports</h4>
+        <p>{{ lab ? 1 : 0 }}</p>
+      </div>
+
+      <div class="stat-card">
+        <h4>💰 Pending Bills</h4>
+        <p>{{ billing && !billing[1] ? '1' : '0' }}</p>
+      </div>
+
+    </div>
+
+    <!-- 🔥 MAIN GRID -->
+    <div *ngIf="data" class="dashboard-grid">
+
+      <!-- 🧍 PERSONAL -->
+      <div class="card blue">
+        <h3>🧍 Personal Info</h3>
+        <p><b>Name:</b> {{data[1]}} {{data[2]}}</p>
+        <p><b>Gender:</b> {{data[3]}}</p>
+        <p><b>DOB:</b> {{data[4]}}</p>
+        <p><b>Contact:</b> {{data[5]}}</p>
+      </div>
+
+      <!-- ❤️ VITALS -->
+      <div class="card gray" *ngIf="vitals">
+        <h3>❤️ Vitals</h3>
+        <p><b>Temperature:</b> {{vitals[0]}}</p>
+        <p><b>Heart Rate:</b> {{vitals[1]}}</p>
+        <p><b>SpO2:</b> {{vitals[2]}}</p>
+      </div>
+
+      <!-- 💊 MEDS -->
+      <div class="card green" *ngIf="meds">
+        <h3>💊 Medication</h3>
+        <p>{{meds[0]}}</p>
+        <p>₹{{meds[1]}}</p>
+      </div>
+
+      <!-- 🧪 LAB -->
+      <div class="card gray" *ngIf="lab">
+        <h3>🧪 Lab</h3>
+        <p>{{lab[0]}}</p>
+        <p>{{lab[1]}}</p>
+      </div>
+
+      <!-- 💰 BILLING -->
+      <div class="card yellow" *ngIf="billing">
+        <h3>💰 Billing</h3>
+        <p>₹{{billing[0]}}</p>
+        <p>{{billing[1] ? 'Paid' : 'Pending'}}</p>
+      </div>
+
+      <!-- 🔥 ALERTS -->
+      <div class="card red">
+        <h3>⚠️ Alerts</h3>
+
+        <p *ngIf="vitals && vitals[1] > 100">
+          High Heart Rate detected
+        </p>
+
+        <p *ngIf="billing && !billing[1]">
+          Payment Pending
+        </p>
+
+        <p *ngIf="(!vitals || vitals[1] <= 100) && (billing && billing[1])">
+          No alerts so far... just chill 😎
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= PATIENT FORM ================= -->
+  <div *ngIf="currentPage === 'patient'">
+    <app-patient-form></app-patient-form>
+  </div>
+
+  <!-- ================= TEAM ================= -->
+  <div *ngIf="currentPage === 'team'">
+    <app-team></app-team>
+  </div>
+
+  <!-- ================= ABOUT ================= -->
+  <div *ngIf="currentPage === 'about'">
+    <app-about></app-about>
+  </div>
+
+  <!-- ================= FAQ ================= -->
+  <div *ngIf="currentPage === 'faq'">
+    <app-faq></app-faq>
+  </div>
+
+  <!-- ================= HELP ================= -->
+  <div *ngIf="currentPage === 'help'">
+    <app-help></app-help>
+  </div>
+
+</app-main-layout>

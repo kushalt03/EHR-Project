@@ -41,6 +41,7 @@ section h3 {
 section p {
   color: #334155;
   line-height: 1.6;
+  text-align: justify;
 }
 
 /* LIST */
