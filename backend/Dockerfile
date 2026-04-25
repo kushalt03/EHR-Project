@@ -8,4 +8,4 @@ RUN mvn clean install -Dmaven.test.skip=true
 
 EXPOSE 5000
 
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["java", "-jar", "target/ehr-0.0.1-SNAPSHOT.jar"]
