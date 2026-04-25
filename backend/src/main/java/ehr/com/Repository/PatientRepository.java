@@ -103,7 +103,8 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
        @Query(value = """
        SELECT mpid, first_name, last_name, 5
        FROM patient 
-       WHERE username = :username AND password_hash = :password
+       WHERE LOWER(TRIM(username)) = LOWER(TRIM(:username)) 
+       AND TRIM(password_hash) = TRIM(:password)
        """, nativeQuery = true)
        List<Object[]> loginPatient(@Param("username") String username,
                                    @Param("password") String password);
@@ -111,7 +112,8 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
        @Query(value = """
        SELECT staff_id, first_name, last_name, role_id
        FROM staff
-       WHERE username = :username AND password_hash = :password
+       WHERE LOWER(TRIM(username)) = LOWER(TRIM(:username)) 
+       AND TRIM(password_hash) = TRIM(:password)
        """, nativeQuery = true)
        List<Object[]> login(@Param("username") String username,
                             @Param("password") String password);

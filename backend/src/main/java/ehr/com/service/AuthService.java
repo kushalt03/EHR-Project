@@ -16,19 +16,12 @@ public class AuthService {
     private PatientRepository repo;
 
     public Object login(String username, String password) {
+        System.out.println("USERNAME: " + username);
+        System.out.println("PASSWORD: " + password);
+        
 
-        // 🔥 TRY STAFF LOGIN FIRST
+        // 🔥 1. TRY STAFF LOGIN
         List<Object[]> staffRes = repo.login(username, password);
-
-        List<Object[]> res = repo.login(username, password);
-
-        if (res.isEmpty()) {
-            res = repo.loginPatient(username, password); // 👈 ADD THIS
-        }
-
-        if (res.isEmpty()) {
-            throw new RuntimeException("Invalid credentials");
-        }
 
         if (!staffRes.isEmpty()) {
 
@@ -49,7 +42,7 @@ public class AuthService {
             return result;
         }
 
-        // 🔥 THEN TRY PATIENT LOGIN
+        // 🔥 2. TRY PATIENT LOGIN
         List<Object[]> patientRes = repo.loginPatient(username, password);
 
         if (!patientRes.isEmpty()) {
@@ -67,9 +60,7 @@ public class AuthService {
         }
 
         // ❌ INVALID
-        Map<String, Object> error = new HashMap<>();
-        error.put("error", "Invalid credentials");
-        return error;
+        throw new RuntimeException("Invalid credentials");
     }
 
     // 🔥 OPTIONAL (keep for navbar if needed later)
