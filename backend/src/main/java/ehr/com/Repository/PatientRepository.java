@@ -276,18 +276,6 @@ LIMIT 1
 """, nativeQuery = true)
 List<Object[]> getPatientFullDetails(@Param("mpid") int mpid);
 
-       
-
-      
-
-
-
-
-
-
-
-
-
 
        
        @Query(value = """

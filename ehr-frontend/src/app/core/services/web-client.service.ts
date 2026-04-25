@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class WebClientService {
 
-  private patientUrl = 'http://localhost:5000/api/patients';
-  private baseUrl = 'http://localhost:5000/api';
+  private patientUrl = 'https://ehr-project-em4m.onrender.com/api/patients';
+  private baseUrl = 'https://ehr-project-em4m.onrender.com/api';
 
   constructor(private http: HttpClient) {}
 
@@ -100,15 +100,15 @@ export class WebClientService {
 
   //ADMIN APIS
   getAdminLab() {
-    return this.http.get('http://localhost:5000/api/admin/lab');
+    return this.http.get(`${this.baseUrl}/admin/lab`);
   }
 
   getAdminClaims() {
-    return this.http.get('http://localhost:5000/api/admin/claims');
+    return this.http.get(`${this.baseUrl}/admin/claims`);
   }
 
   getAdminMeds() {
-    return this.http.get('http://localhost:5000/api/admin/meds');
+    return this.http.get(`${this.baseUrl}/admin/meds`);
   }
 
   getPatientDashboard(mpid: number) {
