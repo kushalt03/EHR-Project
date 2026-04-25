@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN mvn clean install -DskipTests=true
+RUN mvn clean install -Dmaven.test.skip=true
 
 EXPOSE 5000
 
